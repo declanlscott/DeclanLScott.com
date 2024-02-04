@@ -1,51 +1,56 @@
 ---
-interface Props {
-	title: string;
-}
+import Nav from "~/components/Nav.astro";
+import Prose from "~/components/Prose.astro";
+
+type Props = {
+  title?: string;
+};
 
 const { title } = Astro.props;
+
+const name = "Declan L. Scott";
+
+const navItems = [
+  { name: "home", href: "/" },
+  { name: "projects", href: "/projects" },
+  { name: "blog", href: "/blog" },
+  { name: "guestbook", href: "/guestbook" },
+  { name: "contact", href: "#contact" },
+];
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title ? `${title} | ${name}` : name}</title>
+  </head>
+
+  <body class="container px-6 mx-auto mb-40 mt-8 bg-white dark:bg-neutral-900">
+    <Prose>
+      <header class="pb-6 md:pb-12">
+        <Nav items={navItems} />
+      </header>
+
+      <slot />
+
+      <section id="contact">
+        <h2>Contact Me</h2>
+      </section>
+    </Prose>
+  </body>
+
+  <style is:global>
+    @font-face {
+      font-family: "Geist";
+      src: url("/fonts/GeistVariableVF.woff2") format("woff2");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

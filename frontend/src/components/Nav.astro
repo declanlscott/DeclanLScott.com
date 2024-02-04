@@ -1,0 +1,257 @@
+---
+// Magnetic links credit: https://twitter.com/jh3yy/status/1745716136824672271
+
+type Props = {
+  items: {
+    name: string;
+    href: string;
+  }[];
+};
+
+const { items } = Astro.props;
+---
+
+<script>
+  type NavItemElement = HTMLLIElement & {
+    dataset: {
+      centerX: number;
+      centerY: number;
+    };
+    magnetMapper?: {
+      x: (value: number) => number;
+      y: (value: number) => number;
+    };
+  };
+
+  const mapRange = (
+    inputLower: number,
+    inputUpper: number,
+    outputLower: number,
+    outputUpper: number
+  ) => {
+    const INPUT_RANGE = inputUpper - inputLower;
+    const OUTPUT_RANGE = outputUpper - outputLower;
+
+    return (value: number) =>
+      outputLower + (((value - inputLower) / INPUT_RANGE) * OUTPUT_RANGE || 0);
+  };
+
+  const listElement = document.querySelector("ul");
+  const itemElements = document.querySelectorAll("li");
+
+  const updateMagnet = (event: PointerEvent) => {
+    const item = event.currentTarget as NavItemElement;
+
+    const xRange = item.magnetMapper?.x(item.dataset.centerX - event.x);
+    const yRange = item.magnetMapper?.y(item.dataset.centerY - event.y);
+
+    item.style.setProperty("--magnet-x", xRange?.toString() ?? "0");
+    item.style.setProperty("--magnet-y", yRange?.toString() ?? "0");
+
+    // Update list magnet if being used
+    listElement?.style.setProperty("--list-x", xRange?.toString() ?? "0");
+    listElement?.style.setProperty("--list-y", yRange?.toString() ?? "0");
+  };
+
+  const disableMagnet = (event: PointerEvent) => {
+    const item = event.target as NavItemElement;
+
+    item.style.setProperty("--magnet-x", "0");
+    item.style.setProperty("--magnet-y", "0");
+
+    // Update list magnet if being used
+    listElement?.style.setProperty("--list-x", "0");
+    listElement?.style.setProperty("--list-y", "0");
+
+    item.removeEventListener("pointermove", updateMagnet);
+    item.removeEventListener("pointerleave", disableMagnet);
+  };
+
+  const activateMagnet = (event: PointerEvent | FocusEvent) => {
+    const item = event.target as NavItemElement;
+    const bounds = item.getBoundingClientRect();
+
+    // Cache the center position on enter
+    item.dataset.centerX = bounds.x + item.offsetWidth * 0.5;
+    item.dataset.centerY = bounds.y + item.offsetHeight * 0.5;
+
+    // Cache the mapper against the element
+    if (!item.magnetMapper) {
+      item.magnetMapper = {
+        x: mapRange(item.offsetWidth * -0.5, item.offsetWidth * 0.5, 1, -1),
+        y: mapRange(item.offsetHeight * -0.5, item.offsetHeight * 0.5, 1, -1),
+      };
+    }
+
+    // Optionally update the magnet for the list
+    listElement?.style.setProperty("--at", bounds.top.toString());
+    listElement?.style.setProperty(
+      "--aw",
+      (bounds.right - bounds.left).toString()
+    );
+    listElement?.style.setProperty(
+      "--ah",
+      (bounds.bottom - bounds.top).toString()
+    );
+    listElement?.style.setProperty("--al", bounds.left.toString());
+
+    if (event.type === "pointerenter") {
+      item.addEventListener("pointermove", updateMagnet);
+      item.addEventListener("pointerleave", disableMagnet);
+    }
+  };
+
+  itemElements.forEach((item) => {
+    item.addEventListener("pointerenter", activateMagnet);
+    item.addEventListener("focus", activateMagnet);
+  });
+</script>
+
+<nav>
+  <ul class="not-prose m-0 flex w-fit list-none flex-wrap p-0">
+    {
+      items.map(({ name, href }) => (
+        <li class="not-prose grid place-items-center">
+          <a
+            href={href}
+            class="not-prose bg-transparent outline-offset-8 no-underline"
+          >
+            <span class="inline-block">{name}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  @layer magnet {
+    :root {
+      --elastic-out: linear(
+        0,
+        0.2178 2.1%,
+        1.1144 8.49%,
+        1.2959 10.7%,
+        1.3463 11.81%,
+        1.3705 12.94%,
+        1.3726,
+        1.3643 14.48%,
+        1.3151 16.2%,
+        1.0317 21.81%,
+        0.941 24.01%,
+        0.8912 25.91%,
+        0.8694 27.84%,
+        0.8698 29.21%,
+        0.8824 30.71%,
+        1.0122 38.33%,
+        1.0357,
+        1.046 42.71%,
+        1.0416 45.7%,
+        0.9961 53.26%,
+        0.9839 57.54%,
+        0.9853 60.71%,
+        1.0012 68.14%,
+        1.0056 72.24%,
+        0.9981 86.66%,
+        1
+      );
+    }
+
+    nav {
+      --item-inline: 0.5;
+      --item-block: 0;
+      --text-offset: 0.25;
+      --padding-x: calc(var(--item-inline) * 1rem);
+      --padding-y: calc(var(--item-block) * 1rem);
+    }
+
+    /* Implementation for following tab */
+    ul:is(:hover, :focus-within) {
+      --follow: 1;
+    }
+
+    ul::after {
+      content: "";
+      background: hsl(0 0% 96%);
+      border-radius: 0.875rem;
+      position: fixed;
+      opacity: var(--follow, 0);
+      top: calc((var(--at) * 1px) + (var(--item-block) * 1rem));
+      left: calc((var(--al) * 1px) + (var(--item-inline) * 1rem));
+      height: calc((var(--ah) * 1px) - (var(--item-block) * 2rem));
+      width: calc((var(--aw) * 1px) - (var(--item-inline) * 2rem));
+      z-index: -1;
+      pointer-events: none;
+      translate: calc(clamp(-1, var(--list-x), 1) * var(--padding-x, 1rem))
+        calc(clamp(-1, var(--list-y), 1) * var(--padding-y, 1rem));
+      /*		transition: top 0.2s, left 0.2s, width 0.2s, height 0.2s;*/
+      transition:
+        top 0.25s,
+        left 0.25s,
+        width 0.25s,
+        height 0.25s,
+        opacity 0.25s,
+        translate var(--speed, 0.25s) var(--ease, ease-out);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      ul::after {
+        background: hsl(0 0% 15%);
+      }
+    }
+
+    a {
+      background-color: transparent;
+    }
+
+    ul:has(li:hover a) {
+      --ease: ease;
+      --speed: 0.1s;
+    }
+
+    ul:has(li a:is(:hover, :focus-within)) {
+      --speed: 0s;
+    }
+    /* End of implementation for following tab */
+
+    nav li {
+      padding: var(--padding-y) var(--padding-x);
+      outline: 2px transparent;
+    }
+
+    nav li:hover {
+      --active: 1;
+    }
+
+    nav li:hover a {
+      --ease: ease;
+      --speed: 0.1s;
+    }
+
+    nav li a:is(:hover, :focus-within) {
+      --active: 1;
+      --speed: 0s;
+    }
+
+    nav a {
+      --accent: hsl(0 0% calc((100 - (var(--active, 0) * 4)) * 1%));
+      background-color: var(--accent);
+      padding: 1rem;
+      outline-color: var(--accent);
+    }
+
+    nav a span {
+      --padding-x: calc(1rem * var(--text-offset, 0.25));
+      --padding-y: calc(1rem * var(--text-offset, 0.25));
+    }
+
+    :where(nav a, nav a span) {
+      translate: calc(clamp(-1, var(--magnet-x), 1) * var(--padding-x, 1rem))
+        calc(clamp(-1, var(--magnet-y), 1) * var(--padding-y, 1rem));
+      transition:
+        translate var(--speed, 0.25s) var(--ease, ease-out),
+        outline-color 0.25s,
+        background-color 0.25s;
+    }
+  }
+</style>
