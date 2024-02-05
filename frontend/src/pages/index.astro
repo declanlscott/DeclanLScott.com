@@ -8,7 +8,7 @@ const name = "Declan L. Scott";
 ---
 
 <Layout>
-  <main
+  <div
     class="flex justify-between gap-8 md:gap-12 lg:gap-16 md:flex-row flex-col-reverse md:items-start items-center"
   >
     <div class="flex flex-col">
@@ -20,27 +20,32 @@ const name = "Declan L. Scott";
       </h2>
 
       <p>
-        I'm a <strong>software engineer</strong> currently specializing in
-        <strong>full-stack web development</strong>. Check out some of my
-        previous
+        I'm a <strong>software engineer</strong> in the The Corridor of eastern Iowa
+        who specializes in <strong>full-stack web development</strong>. Feel
+        free to explore my previous
         <a href="/projects">projects</a> or visit my <a
           href="https://github.com/declanlscott"
           target="_blank">GitHub</a
-        > to see what I'm up to.
+        >
+        to see what I'm up to.
       </p>
 
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
+        When I'm not building something, in my free time I like to sing and play
+        the piano. I also enjoy reading, and am constantly trying to learn new
+        things. As an alumnus of the
+        <a href="https://engineering.uiowa.edu/" target="_blank">
+          College of Engineering
+        </a>
+        at the <strong>University of Iowa</strong>, I'm a big fan of the
+        Hawkeyes.
       </p>
     </div>
 
     <Image
       src={declan}
-      alt=`A photo of ${name}`
+      alt={name}
       class="not-prose lg:h-96 lg:w-96 md:w-80 md:h-80 h-72 w-72 rounded-full object-cover shadow-xl dark:shadow-neutral-700"
     />
-  </main>
+  </div>
 </Layout>

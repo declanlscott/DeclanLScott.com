@@ -23,88 +23,93 @@ const { items } = Astro.props;
     };
   };
 
-  const mapRange = (
-    inputLower: number,
-    inputUpper: number,
-    outputLower: number,
-    outputUpper: number
-  ) => {
-    const INPUT_RANGE = inputUpper - inputLower;
-    const OUTPUT_RANGE = outputUpper - outputLower;
+  const setupMagnet = () => {
+    const mapRange = (
+      inputLower: number,
+      inputUpper: number,
+      outputLower: number,
+      outputUpper: number
+    ) => {
+      const INPUT_RANGE = inputUpper - inputLower;
+      const OUTPUT_RANGE = outputUpper - outputLower;
 
-    return (value: number) =>
-      outputLower + (((value - inputLower) / INPUT_RANGE) * OUTPUT_RANGE || 0);
+      return (value: number) =>
+        outputLower +
+        (((value - inputLower) / INPUT_RANGE) * OUTPUT_RANGE || 0);
+    };
+
+    const listElement = document.querySelector("ul");
+    const itemElements = document.querySelectorAll("li");
+
+    const updateMagnet = (event: PointerEvent) => {
+      const item = event.currentTarget as NavItemElement;
+
+      const xRange = item.magnetMapper?.x(item.dataset.centerX - event.x);
+      const yRange = item.magnetMapper?.y(item.dataset.centerY - event.y);
+
+      item.style.setProperty("--magnet-x", xRange?.toString() ?? "0");
+      item.style.setProperty("--magnet-y", yRange?.toString() ?? "0");
+
+      // Update list magnet if being used
+      listElement?.style.setProperty("--list-x", xRange?.toString() ?? "0");
+      listElement?.style.setProperty("--list-y", yRange?.toString() ?? "0");
+    };
+
+    const disableMagnet = (event: PointerEvent) => {
+      const item = event.target as NavItemElement;
+
+      item.style.setProperty("--magnet-x", "0");
+      item.style.setProperty("--magnet-y", "0");
+
+      // Update list magnet if being used
+      listElement?.style.setProperty("--list-x", "0");
+      listElement?.style.setProperty("--list-y", "0");
+
+      item.removeEventListener("pointermove", updateMagnet);
+      item.removeEventListener("pointerleave", disableMagnet);
+    };
+
+    const activateMagnet = (event: PointerEvent | FocusEvent) => {
+      const item = event.target as NavItemElement;
+      const bounds = item.getBoundingClientRect();
+
+      // Cache the center position on enter
+      item.dataset.centerX = bounds.x + item.offsetWidth * 0.5;
+      item.dataset.centerY = bounds.y + item.offsetHeight * 0.5;
+
+      // Cache the mapper against the element
+      if (!item.magnetMapper) {
+        item.magnetMapper = {
+          x: mapRange(item.offsetWidth * -0.5, item.offsetWidth * 0.5, 1, -1),
+          y: mapRange(item.offsetHeight * -0.5, item.offsetHeight * 0.5, 1, -1),
+        };
+      }
+
+      // Optionally update the magnet for the list
+      listElement?.style.setProperty("--at", bounds.top.toString());
+      listElement?.style.setProperty(
+        "--aw",
+        (bounds.right - bounds.left).toString()
+      );
+      listElement?.style.setProperty(
+        "--ah",
+        (bounds.bottom - bounds.top).toString()
+      );
+      listElement?.style.setProperty("--al", bounds.left.toString());
+
+      if (event.type === "pointerenter") {
+        item.addEventListener("pointermove", updateMagnet);
+        item.addEventListener("pointerleave", disableMagnet);
+      }
+    };
+
+    itemElements.forEach((item) => {
+      item.addEventListener("pointerenter", activateMagnet);
+      item.addEventListener("focus", activateMagnet);
+    });
   };
 
-  const listElement = document.querySelector("ul");
-  const itemElements = document.querySelectorAll("li");
-
-  const updateMagnet = (event: PointerEvent) => {
-    const item = event.currentTarget as NavItemElement;
-
-    const xRange = item.magnetMapper?.x(item.dataset.centerX - event.x);
-    const yRange = item.magnetMapper?.y(item.dataset.centerY - event.y);
-
-    item.style.setProperty("--magnet-x", xRange?.toString() ?? "0");
-    item.style.setProperty("--magnet-y", yRange?.toString() ?? "0");
-
-    // Update list magnet if being used
-    listElement?.style.setProperty("--list-x", xRange?.toString() ?? "0");
-    listElement?.style.setProperty("--list-y", yRange?.toString() ?? "0");
-  };
-
-  const disableMagnet = (event: PointerEvent) => {
-    const item = event.target as NavItemElement;
-
-    item.style.setProperty("--magnet-x", "0");
-    item.style.setProperty("--magnet-y", "0");
-
-    // Update list magnet if being used
-    listElement?.style.setProperty("--list-x", "0");
-    listElement?.style.setProperty("--list-y", "0");
-
-    item.removeEventListener("pointermove", updateMagnet);
-    item.removeEventListener("pointerleave", disableMagnet);
-  };
-
-  const activateMagnet = (event: PointerEvent | FocusEvent) => {
-    const item = event.target as NavItemElement;
-    const bounds = item.getBoundingClientRect();
-
-    // Cache the center position on enter
-    item.dataset.centerX = bounds.x + item.offsetWidth * 0.5;
-    item.dataset.centerY = bounds.y + item.offsetHeight * 0.5;
-
-    // Cache the mapper against the element
-    if (!item.magnetMapper) {
-      item.magnetMapper = {
-        x: mapRange(item.offsetWidth * -0.5, item.offsetWidth * 0.5, 1, -1),
-        y: mapRange(item.offsetHeight * -0.5, item.offsetHeight * 0.5, 1, -1),
-      };
-    }
-
-    // Optionally update the magnet for the list
-    listElement?.style.setProperty("--at", bounds.top.toString());
-    listElement?.style.setProperty(
-      "--aw",
-      (bounds.right - bounds.left).toString()
-    );
-    listElement?.style.setProperty(
-      "--ah",
-      (bounds.bottom - bounds.top).toString()
-    );
-    listElement?.style.setProperty("--al", bounds.left.toString());
-
-    if (event.type === "pointerenter") {
-      item.addEventListener("pointermove", updateMagnet);
-      item.addEventListener("pointerleave", disableMagnet);
-    }
-  };
-
-  itemElements.forEach((item) => {
-    item.addEventListener("pointerenter", activateMagnet);
-    item.addEventListener("focus", activateMagnet);
-  });
+  document.addEventListener("astro:page-load", setupMagnet);
 </script>
 
 <nav>
@@ -184,7 +189,6 @@ const { items } = Astro.props;
       pointer-events: none;
       translate: calc(clamp(-1, var(--list-x), 1) * var(--padding-x, 1rem))
         calc(clamp(-1, var(--list-y), 1) * var(--padding-y, 1rem));
-      /*		transition: top 0.2s, left 0.2s, width 0.2s, height 0.2s;*/
       transition:
         top 0.25s,
         left 0.25s,
