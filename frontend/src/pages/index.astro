@@ -1,9 +1,9 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 
+import { env } from "~/env";
 import declan from "~/images/declan-l-scott.png";
 import Layout from "~/layouts/Layout.astro";
-import { env } from "~/env";
 
 const { PUBLIC_NAME: name } = env();
 ---
@@ -26,7 +26,7 @@ const { PUBLIC_NAME: name } = env();
         free to explore my previous
         <a href="/projects">projects</a>
         or visit my
-        <a href="https://github.com/declanlscott" target="_blank"> GitHub </a>
+        <a href="https://github.com/declanlscott" target="_blank">GitHub</a>
         to see what I'm up to.
       </p>
 
@@ -34,18 +34,23 @@ const { PUBLIC_NAME: name } = env();
         When I'm not building something, in my free time I like to sing and play
         the piano. I also enjoy reading, and am constantly trying to learn new
         things. As an alumnus of the
-        <a href="https://engineering.uiowa.edu/" target="_blank">
-          College of Engineering
-        </a>
+        <a href="https://engineering.uiowa.edu/" target="_blank"
+          >College of Engineering</a
+        >
         at the <strong>University of Iowa</strong>, I'm a big fan of the
         Hawkeyes.
       </p>
     </div>
 
-    <Image
+    <Picture
       src={declan}
       alt={name}
-      class="not-prose lg:h-96 lg:w-96 md:w-80 md:h-80 h-72 w-72 rounded-full object-cover shadow-xl dark:shadow-neutral-700"
+      formats={["avif", "webp"]}
+      widths={[384, 320, 288]}
+      pictureAttributes={{
+        class: "not-prose shrink-0",
+      }}
+      class="not-prose lg:h-96 lg:w-96 md:w-80 md:h-80 h-72 w-72 rounded-full shadow-xl dark:shadow-neutral-700 object-cover"
     />
   </div>
 </Layout>
