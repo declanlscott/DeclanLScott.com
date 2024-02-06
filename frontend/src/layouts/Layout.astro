@@ -1,19 +1,16 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+
 import Nav from "~/components/Nav.astro";
 import Prose from "~/components/Prose.astro";
 import ContactCard from "~/components/ContactCard.astro";
+import { env } from "~/env";
 
 type Props = {
   title?: string;
 };
 
 const { title } = Astro.props;
-
-const name = "Declan L. Scott";
-const email = "declanlscott@gmail.com";
-const linkedin = "https://www.linkedin.com/in/declan-scott-b65521174/";
-const xUsername = "@declanlscott";
 
 const navItems = [
   { name: "home", href: "/" },
@@ -22,6 +19,13 @@ const navItems = [
   { name: "guestbook", href: "/guestbook" },
   { name: "contact", href: "#contact" },
 ];
+
+const {
+  PUBLIC_NAME: name,
+  PUBLIC_EMAIL: email,
+  PUBLIC_LINKEDIN: linkedin,
+  PUBLIC_X_USERNAME: xUsername,
+} = env();
 ---
 
 <!doctype html>
@@ -166,6 +170,7 @@ const navItems = [
         </footer>
       </div>
     </Prose>
+
     <style is:global>
       @font-face {
         font-family: "Geist";

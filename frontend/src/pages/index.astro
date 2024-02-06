@@ -3,8 +3,9 @@ import { Image } from "astro:assets";
 
 import declan from "~/images/declan-l-scott.png";
 import Layout from "~/layouts/Layout.astro";
+import { env } from "~/env";
 
-const name = "Declan L. Scott";
+const { PUBLIC_NAME: name } = env();
 ---
 
 <Layout>
@@ -23,10 +24,9 @@ const name = "Declan L. Scott";
         I'm a <strong>software engineer</strong> in the The Corridor of eastern Iowa
         who specializes in <strong>full-stack web development</strong>. Feel
         free to explore my previous
-        <a href="/projects">projects</a> or visit my <a
-          href="https://github.com/declanlscott"
-          target="_blank">GitHub</a
-        >
+        <a href="/projects">projects</a>
+        or visit my
+        <a href="https://github.com/declanlscott" target="_blank"> GitHub </a>
         to see what I'm up to.
       </p>
 

@@ -5,6 +5,7 @@
     "paths": {
       "~/components/*": ["src/components/*"],
       "~/content/*": ["src/content/*"],
+      "~/env": ["./env.ts"],
       "~/images/*": ["src/images/*"],
       "~/layouts/*": ["src/layouts/*"],
     },
