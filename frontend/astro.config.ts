@@ -9,7 +9,11 @@ env(loadEnv(import.meta.env.MODE, process.cwd(), ""));
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind()],
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+  ],
   vite: {
     plugins: [
       FontaineTransform.vite({

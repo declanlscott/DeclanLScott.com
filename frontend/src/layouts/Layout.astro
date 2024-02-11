@@ -137,7 +137,12 @@ const {
               <path d="m14.5 4-5 16"></path>
             </svg>
 
-            <p class="text-sm">Developed by <a href="/">Declan L. Scott</a></p>
+            <p class="text-sm">
+              <span class="dark:text-neutral-400 text-neutral-500"
+                >designed & developed by</span
+              >
+              <a href="/">Declan L. Scott</a>
+            </p>
           </div>
 
           <a
@@ -168,6 +173,10 @@ const {
     </Prose>
 
     <style is:global>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+
       @font-face {
         font-family: "Geist";
         src: url("/fonts/GeistVariableVF.woff2") format("woff2");
@@ -178,6 +187,24 @@ const {
 
       html {
         scroll-behavior: smooth;
+      }
+
+      @layer base {
+        :root {
+          --gradient-color-1: rgb(99, 102, 241);
+          --gradient-color-2: rgb(167, 139, 250);
+          --gradient-color-3: rgb(252, 165, 165);
+          --gradient-color-4: rgb(251, 146, 60);
+        }
+
+        @media (prefers-color-scheme: dark) {
+          :root {
+            --gradient-color-1: rgb(179, 174, 245);
+            --gradient-color-2: rgb(215, 203, 231);
+            --gradient-color-3: rgb(229, 200, 200);
+            --gradient-color-4: rgb(234, 168, 121);
+          }
+        }
       }
     </style>
   </body>
