@@ -40,7 +40,9 @@ const {
     <ViewTransitions />
   </head>
 
-  <body class="container px-6 mx-auto mt-8 bg-white dark:bg-neutral-900">
+  <body
+    class="body-gradient container px-6 mx-auto mt-8 bg-white dark:bg-neutral-900"
+  >
     <Prose>
       <div class="flex min-h-[calc(100vh-2rem)] flex-col">
         <header class="pb-6 md:pb-12">
@@ -191,20 +193,39 @@ const {
 
       @layer base {
         :root {
-          --gradient-color-1: rgb(99, 102, 241);
-          --gradient-color-2: rgb(167, 139, 250);
-          --gradient-color-3: rgb(252, 165, 165);
-          --gradient-color-4: rgb(251, 146, 60);
+          --gradient-color-1: hsl(239, 83.5%, 66.7%);
+          --gradient-color-2: hsl(255, 91.7%, 76.3%);
+          --gradient-color-3: hsl(0, 93.5%, 81.8%);
+          --gradient-color-4: hsl(27, 96%, 61%);
+
+          --purple-hsl: 255, 85%, 65%;
+          --overlay-blurple: hsla(var(--purple-hsl), 0.2);
         }
 
         @media (prefers-color-scheme: dark) {
           :root {
-            --gradient-color-1: rgb(179, 174, 245);
-            --gradient-color-2: rgb(215, 203, 231);
-            --gradient-color-3: rgb(229, 200, 200);
-            --gradient-color-4: rgb(234, 168, 121);
+            --gradient-color-1: hsl(244, 78%, 82.2%);
+            --gradient-color-2: hsl(266, 36.8%, 85.1%);
+            --gradient-color-3: hsl(0, 35.8%, 84.1%);
+            --gradient-color-4: hsl(25, 72.9%, 69.6%);
+
+            --purple-hsl: 255, 60%, 60%;
           }
         }
+      }
+
+      /* 
+      * Gradient page background effect
+      * CREDIT: https://github.com/withastro/starlight/blob/f277809429317730fef323da6d9319feba5b8dca/docs/src/assets/landing.css#L10
+      * from the MIT-licensed Astro Starlight project
+      */
+      .body-gradient {
+        background:
+          linear-gradient(215deg, var(--overlay-blurple), transparent 40%),
+          radial-gradient(var(--overlay-blurple), transparent 40%) no-repeat -60vw -40vh /
+            105vw 200vh,
+          radial-gradient(var(--overlay-blurple), transparent 65%) no-repeat 50%
+            calc(100% + 20rem) / 60rem 30rem;
       }
     </style>
   </body>

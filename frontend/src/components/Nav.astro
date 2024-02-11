@@ -1,5 +1,7 @@
 ---
-// Magnetic links credit: https://twitter.com/jh3yy/status/1745716136824672271
+// Magnetic Nav Links
+// CREDIT: https://twitter.com/jh3yy/status/1745716136824672271
+// (Modified for TypeScipt and Astro)
 
 type Props = {
   items: {
@@ -177,7 +179,7 @@ const { items } = Astro.props;
 
     ul::after {
       content: "";
-      background: hsl(0 0% 96%);
+      background: var(--overlay-blurple);
       border-radius: 0.875rem;
       position: fixed;
       opacity: var(--follow, 0);
@@ -200,7 +202,7 @@ const { items } = Astro.props;
 
     @media (prefers-color-scheme: dark) {
       ul::after {
-        background: hsl(0 0% 15%);
+        background: var(--overlay-blurple);
       }
     }
 
@@ -238,10 +240,16 @@ const { items } = Astro.props;
     }
 
     nav a {
-      --accent: hsl(0 0% calc((100 - (var(--active, 0) * 4)) * 1%));
+      --accent: hsl(255 85% calc((100 - (var(--active, 0) * 35)) * 1%));
       background-color: var(--accent);
       padding: 1rem;
       outline-color: var(--accent);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      nav a {
+        --accent: hsl(255 60% calc((100 - (var(--active, 0) * 40)) * 1%));
+      }
     }
 
     nav a span {
