@@ -167,7 +167,7 @@ const { items } = Astro.props;
     nav {
       --item-inline: 0.5;
       --item-block: 0;
-      --text-offset: 0.25;
+      --text-offset: 0;
       --padding-x: calc(var(--item-inline) * 1rem);
       --padding-y: calc(var(--item-block) * 1rem);
     }
@@ -210,11 +210,6 @@ const { items } = Astro.props;
       background-color: transparent;
     }
 
-    ul:has(li:hover a) {
-      --ease: ease;
-      --speed: 0.1s;
-    }
-
     ul:has(li a:is(:hover, :focus-within)) {
       --speed: 0s;
     }
@@ -222,7 +217,6 @@ const { items } = Astro.props;
 
     nav li {
       padding: var(--padding-y) var(--padding-x);
-      outline: 2px transparent;
     }
 
     nav li:hover {
