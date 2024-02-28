@@ -1,5 +1,4 @@
-import type { PrettierConfig } from "@ianvs/prettier-plugin-sort-imports";
-
+/** @type {import("@ianvs/prettier-plugin-sort-imports").PrettierConfig} */
 export default {
   plugins: [
     "@ianvs/prettier-plugin-sort-imports",
@@ -26,4 +25,4 @@ export default {
     "<TYPES>^[~]",
     "<TYPES>^[.]",
   ],
-} satisfies PrettierConfig;
+};

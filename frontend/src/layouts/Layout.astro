@@ -1,10 +1,10 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 
-import { env } from "~/env";
+import ContactCard from "~/components/ContactCard.astro";
 import Nav from "~/components/Nav.astro";
 import Prose from "~/components/Prose.astro";
-import ContactCard from "~/components/ContactCard.astro";
+import { env } from "~/env";
 
 type Props = {
   title?: string;
@@ -41,7 +41,7 @@ const {
   </head>
 
   <body
-    class="body-gradient container px-6 mx-auto mt-8 bg-white dark:bg-neutral-900"
+    class="body-gradient container mx-auto mt-8 bg-white px-6 dark:bg-neutral-900"
   >
     <Prose>
       <div class="flex min-h-[calc(100vh-2rem)] flex-col">
@@ -49,7 +49,7 @@ const {
           <Nav items={navItems} />
         </header>
 
-        <main class="flex-grow mb-32">
+        <main class="mb-32 flex-grow">
           <section transition:animate="slide">
             <slot />
           </section>
@@ -57,7 +57,7 @@ const {
           <section id="contact" transition:name="contact">
             <h2>Contact me</h2>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
               <ContactCard href={`mailto:${email}`} title={email}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +122,7 @@ const {
         </main>
 
         <footer class="flex h-16 items-center justify-between">
-          <div class="flex gap-4 items-center">
+          <div class="flex items-center gap-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -140,7 +140,7 @@ const {
             </svg>
 
             <p class="text-sm">
-              <span class="dark:text-neutral-400 text-neutral-500"
+              <span class="text-neutral-500 dark:text-neutral-400"
                 >designed & developed by</span
               >
               <a href="/">Declan L. Scott</a>
@@ -149,7 +149,7 @@ const {
 
           <a
             href="https://github.com/declanlscott/DeclanLScott.com"
-            class="text-neutral-700 dark:text-neutral-300 h-10 w-10 rounded-lg bg-tranparent transition-all hover:dark:text-white hover:dark:bg-neutral-800 hover:text-black hover:bg-neutral-100 flex justify-center items-center"
+            class="bg-tranparent flex h-10 w-10 items-center justify-center rounded-lg text-neutral-700 transition-all hover:bg-neutral-100 hover:text-black dark:text-neutral-300 hover:dark:bg-neutral-800 hover:dark:text-white"
             target="_blank"
             aria-label="GitHub Repository for DeclanLScott.com"
           >
