@@ -17,7 +17,7 @@ export default defineConfig({
   vite: {
     plugins: [
       FontaineTransform.vite({
-        fallbacks: ["Arial"],
+        fallbacks: ["Arial", "Roboto"],
         resolvePath: (path) => new URL(`./public${path}`, import.meta.url),
       }),
     ],

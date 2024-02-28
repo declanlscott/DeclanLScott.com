@@ -50,9 +50,9 @@ const {
         </header>
 
         <main class="flex-grow mb-32">
-          <div transition:animate="slide">
+          <section transition:animate="slide">
             <slot />
-          </div>
+          </section>
 
           <section id="contact" transition:name="contact">
             <h2>Contact me</h2>
@@ -181,8 +181,40 @@ const {
 
       @font-face {
         font-family: "Geist";
-        src: url("/fonts/GeistVariableVF.woff2") format("woff2");
-        font-weight: normal;
+        src: url("/fonts/Geist-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Geist";
+        src: url("/fonts/Geist-Medium.woff2") format("woff2");
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Geist";
+        src: url("/fonts/Geist-SemiBold.woff2") format("woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Geist";
+        src: url("/fonts/Geist-Bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Geist";
+        src: url("/fonts/Geist-Black.woff2") format("woff2");
+        font-weight: 800;
         font-style: normal;
         font-display: swap;
       }
@@ -199,7 +231,7 @@ const {
           --gradient-color-4: hsl(27, 96%, 61%);
 
           --purple-hsl: 255, 85%, 65%;
-          --overlay-blurple: hsla(var(--purple-hsl), 0.2);
+          --highlight: hsla(var(--purple-hsl), 0.2);
         }
 
         @media (prefers-color-scheme: dark) {
@@ -209,7 +241,7 @@ const {
             --gradient-color-3: hsl(0, 35.8%, 84.1%);
             --gradient-color-4: hsl(25, 72.9%, 69.6%);
 
-            --purple-hsl: 255, 60%, 60%;
+            --highlight: hsla(0, 0%, 14.9%, 100%);
           }
         }
       }
@@ -221,11 +253,17 @@ const {
       */
       .body-gradient {
         background:
-          linear-gradient(215deg, var(--overlay-blurple), transparent 40%),
-          radial-gradient(var(--overlay-blurple), transparent 40%) no-repeat -60vw -40vh /
+          linear-gradient(215deg, var(--highlight), transparent 40%),
+          radial-gradient(var(--highlight), transparent 40%) no-repeat -60vw -40vh /
             105vw 200vh,
-          radial-gradient(var(--overlay-blurple), transparent 65%) no-repeat 50%
+          radial-gradient(var(--highlight), transparent 65%) no-repeat 50%
             calc(100% + 20rem) / 60rem 30rem;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .body-gradient {
+          background: transparent;
+        }
       }
     </style>
   </body>

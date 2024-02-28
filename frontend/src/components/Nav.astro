@@ -179,7 +179,7 @@ const { items } = Astro.props;
 
     ul::after {
       content: "";
-      background: var(--overlay-blurple);
+      background: var(--highlight);
       border-radius: 0.875rem;
       position: fixed;
       opacity: var(--follow, 0);
@@ -202,7 +202,7 @@ const { items } = Astro.props;
 
     @media (prefers-color-scheme: dark) {
       ul::after {
-        background: var(--overlay-blurple);
+        background: var(--highlight);
       }
     }
 
