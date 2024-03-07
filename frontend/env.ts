@@ -1,5 +1,6 @@
-import { createEnv } from "@t3-oss/env-core";
-import { z } from "zod";
+import { email, string, url } from "valibot";
+
+import { createEnv } from "./src/lib/vendor/env";
 
 export const env = (runtimeEnv: Record<string, string> = import.meta.env) =>
   createEnv({
@@ -10,10 +11,10 @@ export const env = (runtimeEnv: Record<string, string> = import.meta.env) =>
     clientPrefix: "PUBLIC_",
 
     client: {
-      PUBLIC_NAME: z.string(),
-      PUBLIC_EMAIL: z.string().email(),
-      PUBLIC_LINKEDIN: z.string().url(),
-      PUBLIC_X_USERNAME: z.string(),
+      PUBLIC_NAME: string(),
+      PUBLIC_EMAIL: string([email()]),
+      PUBLIC_LINKEDIN: string([url()]),
+      PUBLIC_X_USERNAME: string(),
     },
 
     /**

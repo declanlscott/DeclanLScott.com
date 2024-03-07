@@ -1,11 +1,46 @@
 ---
+import Project from "../components/Project.astro";
 import Layout from "../layouts/Layout.astro";
-
-const title = "Projects";
 ---
 
-<Layout title={title}>
+<Layout title="Projects">
   <div>
-    <h1 class="text-5xl font-bold">{title}</h1>
+    <h1>
+      <span class="font-light text-neutral-700 dark:text-neutral-300">my</span> projects
+    </h1>
+
+    <p>In no particular order, here are some of the projects I've worked on.</p>
+
+    <Project
+      name="PseudoPoll"
+      href="https://pseudopoll.com"
+      repo="https://github.com/declanlscott/pseudopoll"
+    >
+      <p>PseudoPoll</p>
+    </Project>
+
+    <Project
+      name="Fodder"
+      href="https://fodder.declanlscott.com"
+      repo="https://github.com/declanlscott/fodder"
+    >
+      <p>Fodder</p>
+    </Project>
+
+    <Project
+      name="Fabtastic Painting"
+      href="https://fabtastic-painting.com"
+      repo="https://github.com/declanlscott/fabtastic-painting"
+    >
+      <p>Fabtastic Painting</p>
+    </Project>
+
+    <Project
+      name="My Website"
+      href="/"
+      repo="https://github.com/declanlscott/declanlscott.com"
+    >
+      <p>My personal website (this one)</p>
+    </Project>
   </div>
 </Layout>
