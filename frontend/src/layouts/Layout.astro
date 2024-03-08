@@ -223,6 +223,18 @@ const {
         scroll-behavior: smooth;
       }
 
+      ::selection {
+        color: white;
+        background: rgb(23, 23, 23);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        ::selection {
+          color: rgb(23, 23, 23);
+          background: white;
+        }
+      }
+
       @layer base {
         :root {
           --gradient-color-1: hsl(239, 83.5%, 66.7%);
