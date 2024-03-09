@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+
+import ProjectCard from "~/components/ProjectCard.astro";
+import Layout from "~/layouts/Layout.astro";
+
+const projects = await getCollection("projects");
+---
+
+<Layout title="Projects">
+  <div>
+    <h1>
+      <span class="font-light text-neutral-700 dark:text-neutral-300">my</span> projects
+    </h1>
+
+    <p>
+      With each of my projects, I aim to accomplish two things: <strong
+        >build</strong
+      > something that I find useful or interesting, and <strong>learn</strong> at
+      least one new technology. I believe the best way to learn and improve my skills
+      is by building things. In no particular order, here are some of my projects:
+    </p>
+
+    {
+      projects
+        .sort((a, b) => a.data.order - b.data.order)
+        .map((project) => <ProjectCard project={project} />)
+    }
+  </div>
+</Layout>
