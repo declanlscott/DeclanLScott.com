@@ -3,6 +3,7 @@ name: PseudoPoll
 url: https://pseudopoll.com
 repo: https://github.com/declanlscott/pseudopoll
 blurb: The Internet's Polling Place
+image: ./pseudopoll.png
 order: 0
 ---
 

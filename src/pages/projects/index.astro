@@ -21,10 +21,12 @@ const projects = await getCollection("projects");
       is by building things. In no particular order, here are some of my projects:
     </p>
 
-    {
-      projects
-        .sort((a, b) => a.data.order - b.data.order)
-        .map((project) => <ProjectCard project={project} />)
-    }
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+      {
+        projects
+          .sort((a, b) => a.data.order - b.data.order)
+          .map((project) => <ProjectCard project={project} />)
+      }
+    </div>
   </div>
 </Layout>
