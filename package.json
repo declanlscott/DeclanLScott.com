@@ -12,24 +12,25 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
+    "@astrojs/db": "^0.8.1",
     "@astrojs/sitemap": "^3.1.1",
     "@astrojs/svelte": "^5.2.0",
     "@astrojs/tailwind": "^5.1.0",
-    "astro": "^4.4.11",
+    "astro": "^4.5.2",
     "svelte": "^4.2.12",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3",
+    "typescript": "^5.4.2",
     "valibot": "^0.30.0"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@tailwindcss/typography": "^0.5.10",
-    "@types/node": "^20.11.24",
+    "@types/node": "^20.11.26",
     "fontaine": "^0.4.1",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
-    "prettier-plugin-tailwindcss": "^0.5.11",
+    "prettier-plugin-tailwindcss": "^0.5.12",
     "sharp": "^0.33.2",
-    "vite": "^5.1.5"
+    "vite": "^5.1.6"
   }
 }

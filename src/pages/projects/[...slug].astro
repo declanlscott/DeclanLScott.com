@@ -70,13 +70,18 @@ const { Content } = await project.render();
     </svg>
   </a>
 
-  <Picture
-    src={project.data.image}
-    alt={project.data.name}
-    formats={["avif", "webp"]}
+  <a
+    href={project.data.url}
+    target="_blank"
     transition:name={`${project.slug}-img`}
-    class="rounded-lg"
-  />
+  >
+    <Picture
+      src={project.data.image}
+      alt={project.data.name}
+      formats={["avif", "webp"]}
+      class="rounded-lg"
+    />
+  </a>
 
   <Content />
 </Layout>

@@ -1,3 +1,4 @@
+import db from "@astrojs/db";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
@@ -13,11 +14,10 @@ env(loadEnv(import.meta.env.MODE, process.cwd(), ""));
 export default defineConfig({
   site: "https://www.declanlscott.com",
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
+    tailwind({ applyBaseStyles: false }),
     svelte(),
     sitemap(),
+    db(),
   ],
   vite: {
     plugins: [
