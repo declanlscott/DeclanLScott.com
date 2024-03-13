@@ -4,30 +4,25 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  '@astrojs/db@0.8.1':
-    hash: i4d5tab4eibqoxrgwh4l2fo3b4
-    path: patches/@astrojs__db@0.8.1.patch
-
 dependencies:
   '@astrojs/check':
     specifier: ^0.4.1
     version: 0.4.1(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.4.2)
   '@astrojs/db':
-    specifier: ^0.8.1
-    version: 0.8.1(patch_hash=i4d5tab4eibqoxrgwh4l2fo3b4)
+    specifier: ^0.8.2
+    version: 0.8.2
   '@astrojs/node':
     specifier: ^8.2.3
-    version: 8.2.3(astro@4.5.2)
+    version: 8.2.3(astro@4.5.3)
   '@astrojs/sitemap':
     specifier: ^3.1.1
     version: 3.1.1
   '@astrojs/svelte':
     specifier: ^5.2.0
-    version: 5.2.0(astro@4.5.2)(svelte@4.2.12)(typescript@5.4.2)(vite@5.1.6)
+    version: 5.2.0(astro@4.5.3)(svelte@4.2.12)(typescript@5.4.2)(vite@5.1.6)
   '@astrojs/tailwind':
     specifier: ^5.1.0
-    version: 5.1.0(astro@4.5.2)(tailwindcss@3.4.1)
+    version: 5.1.0(astro@4.5.3)(tailwindcss@3.4.1)
   '@lucia-auth/adapter-drizzle':
     specifier: ^1.0.3
     version: 1.0.3(lucia@3.1.1)
@@ -35,8 +30,8 @@ dependencies:
     specifier: ^1.2.1
     version: 1.2.1
   astro:
-    specifier: ^4.5.2
-    version: 4.5.2(@types/node@20.11.27)(typescript@5.4.2)
+    specifier: ^4.5.3
+    version: 4.5.3(@types/node@20.11.27)(typescript@5.4.2)
   lucia:
     specifier: ^3.1.1
     version: 3.1.1
@@ -122,8 +117,8 @@ packages:
     resolution: {integrity: sha512-XpC8MAaWjD1ff6/IfkRq/5k1EFj6zhCNqXRd5J43SVJEBj/Bsmizkm8N0xOYscGcDFQkRgEw6/eKnI5x/1l6aA==}
     dev: false
 
-  /@astrojs/db@0.8.1(patch_hash=i4d5tab4eibqoxrgwh4l2fo3b4):
-    resolution: {integrity: sha512-EOM9IGe46zAmxq8nbPmoIvWjQ61HdclD1PsgW2JBY0m04GKhexC8lfGCGFWSUF2HlscRwAkW6UeEocqvOu/rGA==}
+  /@astrojs/db@0.8.2:
+    resolution: {integrity: sha512-F+ATIW0MSJXZ9mV7Azao3GzMobWXmRImycXW+tkzK7wkF4EDq3wIwWjmD7Pxdv/ODSAAfeZEq7f6QMX25glsVA==}
     dependencies:
       '@libsql/client': 0.5.6
       async-listen: 3.0.1
@@ -163,7 +158,6 @@ packages:
       - sqlite3
       - utf-8-validate
     dev: false
-    patched: true
 
   /@astrojs/internal-helpers@0.3.0:
     resolution: {integrity: sha512-tGmHvrhpzuz0JBHaJX8GywN9g4rldVNHtkoVDC3m/DdzBO70jGoVuc0uuNVglRYnsdwkbG0K02Iw3nOOR3/Y4g==}
@@ -228,12 +222,12 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/node@8.2.3(astro@4.5.2):
+  /@astrojs/node@8.2.3(astro@4.5.3):
     resolution: {integrity: sha512-VQQy7QIv4X+5dlKCEchYIxMFryS+BwDOFGNzeRmHe1/P819TlNup9/M8XqnWW4aZPxV7P6CoDeFxX6HuT/kOmQ==}
     peerDependencies:
       astro: ^4.2.0
     dependencies:
-      astro: 4.5.2(@types/node@20.11.27)(typescript@5.4.2)
+      astro: 4.5.3(@types/node@20.11.27)(typescript@5.4.2)
       send: 0.18.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -254,7 +248,7 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@astrojs/svelte@5.2.0(astro@4.5.2)(svelte@4.2.12)(typescript@5.4.2)(vite@5.1.6):
+  /@astrojs/svelte@5.2.0(astro@4.5.3)(svelte@4.2.12)(typescript@5.4.2)(vite@5.1.6):
     resolution: {integrity: sha512-GmwbXks2WMkmAfl0rlPM/2gA1RtmZzjGV2mOceV3g7QNyjIsSYBPKrlEnSFnuR+YMvlAtWdbMFBsb3gtGxnTTg==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
@@ -263,7 +257,7 @@ packages:
       typescript: ^5.3.3
     dependencies:
       '@sveltejs/vite-plugin-svelte': 3.0.2(svelte@4.2.12)(vite@5.1.6)
-      astro: 4.5.2(@types/node@20.11.27)(typescript@5.4.2)
+      astro: 4.5.3(@types/node@20.11.27)(typescript@5.4.2)
       svelte: 4.2.12
       svelte2tsx: 0.6.27(svelte@4.2.12)(typescript@5.4.2)
       typescript: 5.4.2
@@ -272,13 +266,13 @@ packages:
       - vite
     dev: false
 
-  /@astrojs/tailwind@5.1.0(astro@4.5.2)(tailwindcss@3.4.1):
+  /@astrojs/tailwind@5.1.0(astro@4.5.3)(tailwindcss@3.4.1):
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.5.2(@types/node@20.11.27)(typescript@5.4.2)
+      astro: 4.5.3(@types/node@20.11.27)(typescript@5.4.2)
       autoprefixer: 10.4.18(postcss@8.4.35)
       postcss: 8.4.35
       postcss-load-config: 4.0.2(postcss@8.4.35)
@@ -2148,8 +2142,8 @@ packages:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
     dev: false
 
-  /astro@4.5.2(@types/node@20.11.27)(typescript@5.4.2):
-    resolution: {integrity: sha512-Nq3GojlwXJ3XD047khraCWu/6aqGFfcyq7Q0blpTBSZnCz2s4Zri04PHvUkbKF7TK2UljkFuTXKP0CE4ZuJi9Q==}
+  /astro@4.5.3(@types/node@20.11.27)(typescript@5.4.2):
+    resolution: {integrity: sha512-MEiLeAr3+THeadTZCQ4U+DI9VTTUZdYrPEPedSKmQwqnkiPkLjpLgx4yOcyH7Yp4t57+SWiC6W0rt7lPGM36Fg==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
     dependencies:
@@ -2163,7 +2157,6 @@ packages:
       '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.24.0)
       '@babel/traverse': 7.24.0
       '@babel/types': 7.24.0
-      '@shikijs/core': 1.1.7
       '@types/babel__core': 7.20.5
       acorn: 8.11.3
       aria-query: 5.3.0
@@ -2194,7 +2187,6 @@ packages:
       js-yaml: 4.1.0
       kleur: 4.1.5
       magic-string: 0.30.8
-      mdast-util-to-hast: 13.0.2
       mime: 3.0.0
       ora: 7.0.1
       p-limit: 5.0.0
@@ -3244,7 +3236,7 @@ packages:
       hast-util-from-parse5: 8.0.1
       hast-util-to-parse5: 8.0.0
       html-void-elements: 3.0.0
-      mdast-util-to-hast: 13.0.2
+      mdast-util-to-hast: 13.1.0
       parse5: 7.1.2
       unist-util-position: 5.0.0
       unist-util-visit: 5.0.0
@@ -3263,7 +3255,7 @@ packages:
       hast-util-raw: 9.0.2
       hast-util-whitespace: 3.0.0
       html-void-elements: 3.0.0
-      mdast-util-to-hast: 13.0.2
+      mdast-util-to-hast: 13.1.0
       property-information: 6.4.1
       space-separated-tokens: 2.0.2
       stringify-entities: 4.0.3
@@ -3752,8 +3744,8 @@ packages:
       unist-util-is: 6.0.0
     dev: false
 
-  /mdast-util-to-hast@13.0.2:
-    resolution: {integrity: sha512-U5I+500EOOw9e3ZrclN3Is3fRpw8c19SMyNZlZ2IS+7vLsNzb2Om11VpIVOR+/0137GhZsFEF6YiKD5+0Hr2Og==}
+  /mdast-util-to-hast@13.1.0:
+    resolution: {integrity: sha512-/e2l/6+OdGp/FB+ctrJ9Avz71AN/GRH3oi/3KAx/kMnoUsD6q0woXlDT8lLEeViVKE7oZxE7RXzvO3T8kF2/sA==}
     dependencies:
       '@types/hast': 3.0.4
       '@types/mdast': 4.0.3
@@ -3763,6 +3755,7 @@ packages:
       trim-lines: 3.0.1
       unist-util-position: 5.0.0
       unist-util-visit: 5.0.0
+      vfile: 6.0.1
     dev: false
 
   /mdast-util-to-markdown@2.1.0:
@@ -4789,7 +4782,7 @@ packages:
     dependencies:
       '@types/hast': 3.0.4
       '@types/mdast': 4.0.3
-      mdast-util-to-hast: 13.0.2
+      mdast-util-to-hast: 13.1.0
       unified: 11.0.4
       vfile: 6.0.1
     dev: false
@@ -4916,7 +4909,6 @@ packages:
 
   /safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
-    requiresBuild: true
     dev: false
 
   /sass-formatter@0.7.9:
@@ -5153,7 +5145,6 @@ packages:
 
   /string_decoder@1.3.0:
     resolution: {integrity: sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==}
-    requiresBuild: true
     dependencies:
       safe-buffer: 5.2.1
     dev: false

@@ -32,7 +32,6 @@ export async function GET(context: APIContext): Promise<Response> {
     const existingUser = (
       await db.select().from(User).where(eq(User.githubId, githubUser.id))
     )[0];
-    console.log("existingUser", existingUser);
 
     if (existingUser) {
       const session = await lucia.createSession(existingUser.id, {});

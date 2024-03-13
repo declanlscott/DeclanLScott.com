@@ -32,7 +32,7 @@ export default defineConfig({
       }),
     ],
     optimizeDeps: {
-      exclude: ["oslo"],
+      exclude: ["oslo", "fsevents"],
     },
   },
 });
