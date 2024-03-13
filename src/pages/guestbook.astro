@@ -9,5 +9,11 @@ import Layout from "../layouts/Layout.astro";
         >sign my</span
       > guestbook
     </h1>
+
+    <a href="/login/github" data-astro-prefetch="false">sign in</a>
+
+    <form method="POST" action="/api/logout">
+      <button>sign out</button>
+    </form>
   </main>
 </Layout>

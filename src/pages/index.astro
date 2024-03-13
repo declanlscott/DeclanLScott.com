@@ -1,8 +1,8 @@
 ---
 import { Picture } from "astro:assets";
 
-import { env } from "~/env";
 import Layout from "~/layouts/Layout.astro";
+import { env } from "~/lib/env";
 import declan from "./_declan-l-scott.png";
 
 const { PUBLIC_NAME: name } = env();
@@ -74,3 +74,4 @@ const { PUBLIC_NAME: name } = env();
     />
   </div>
 </Layout>
+src/lib/env

@@ -6,8 +6,8 @@
     "paths": {
       "~/components/*": ["src/components/*"],
       "~/content/*": ["src/content/*"],
-      "~/env": ["./env.ts"],
-      "~/layouts/*": ["src/layouts/*"]
+      "~/layouts/*": ["src/layouts/*"],
+      "~/lib/*": ["src/lib/*"]
     }
   }
 }

@@ -1,0 +1,24 @@
+diff --git a/dist/core/schemas.js b/dist/core/schemas.js
+index a2e704527f73e475e3965723225277bee2e1615f..ae1e458167b619c7d00553fc44f0b00f2f8b0586 100644
+--- a/dist/core/schemas.js
++++ b/dist/core/schemas.js
+@@ -96,12 +96,13 @@ const jsonColumnSchema = z.object({
+     default: z.unknown().optional()
+   })
+ });
+-const columnSchema = z.union([
+-  booleanColumnSchema,
+-  numberColumnSchema,
+-  textColumnSchema,
+-  dateColumnSchema,
+-  jsonColumnSchema
++const columnSchema =
++  z.discriminatedUnion("type", [
++    booleanColumnSchema,
++    numberColumnSchema,
++    textColumnSchema,
++    dateColumnSchema,
++    jsonColumnSchema
+ ]);
+ const referenceableColumnSchema = z.union([textColumnSchema, numberColumnSchema]);
+ const columnsSchema = z.record(columnSchema);

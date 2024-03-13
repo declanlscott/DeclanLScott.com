@@ -4,7 +4,7 @@ import { ViewTransitions } from "astro:transitions";
 import ContactCard from "~/components/ContactCard.astro";
 import Nav from "~/components/Nav.astro";
 import Prose from "~/components/Prose.astro";
-import { env } from "~/env";
+import { env } from "~/lib/env";
 
 type Props = {
   title?: string;
@@ -279,5 +279,7 @@ const {
         }
       }
     </style>
+
+    src/lib/env
   </body>
 </html>
