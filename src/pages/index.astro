@@ -5,7 +5,7 @@ import Layout from "~/layouts/Layout.astro";
 import { env } from "~/lib/env";
 import declan from "./_declan-l-scott.png";
 
-const { PUBLIC_NAME: name } = env();
+const { PUBLIC_NAME: name } = env;
 ---
 
 <svg
@@ -30,10 +30,10 @@ const { PUBLIC_NAME: name } = env();
 
 <Layout>
   <div
-    class="flex flex-col-reverse items-center justify-between gap-8 md:flex-row md:items-start md:gap-12 lg:gap-16"
+    class="flex flex-col-reverse items-center justify-between gap-8 md:flex-row md:items-start"
   >
     <div class="flex flex-col">
-      <h1 class="mb-0 text-5xl md:text-6xl">{name}</h1>
+      <h1 class="mb-0 md:text-5xl">{name}</h1>
       <h2
         class="not-prose mb-8 mt-0 w-fit bg-gradient bg-clip-text uppercase tracking-[.25em] text-transparent md:text-lg"
       >
@@ -42,7 +42,7 @@ const { PUBLIC_NAME: name } = env();
 
       <p>
         I'm a <strong>software engineer</strong> in the The Corridor of eastern Iowa
-        who specializes in <strong>full-stack web development</strong>. Feel
+        that specializes in <strong>full-stack web development</strong>. Feel
         free to explore my previous
         <a href="/projects">projects</a>
         or visit my
@@ -70,8 +70,7 @@ const { PUBLIC_NAME: name } = env();
       pictureAttributes={{
         class: "not-prose shrink-0",
       }}
-      class="not-prose h-72 w-72 rounded-full object-cover shadow-xl md:h-80 md:w-80 lg:h-96 lg:w-96 dark:shadow-neutral-700"
+      class="not-prose h-72 w-72 rounded-full object-cover shadow-xl dark:shadow-neutral-700"
     />
   </div>
 </Layout>
-src/lib/env

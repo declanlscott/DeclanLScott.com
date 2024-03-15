@@ -1,26 +1,12 @@
-import { asDrizzleTable } from "@astrojs/db/runtime";
 import { DrizzleSQLiteAdapter } from "@lucia-auth/adapter-drizzle";
 import { GitHub } from "arctic";
-import { db } from "astro:db";
+import { db, Session, User } from "astro:db";
 import { Lucia } from "lucia";
 
-import { Session, User } from "~/lib/db";
 import { env } from "~/lib/env";
 
-import type { DBTable } from "@astrojs/db/types";
-import type {
-  SQLiteSessionTable,
-  SQLiteUserTable,
-} from "@lucia-auth/adapter-drizzle";
-
-const adapter = new DrizzleSQLiteAdapter(
-  db,
-  asDrizzleTable(
-    "Session",
-    Session as DBTable,
-  ) as unknown as SQLiteSessionTable,
-  asDrizzleTable("User", User as DBTable) as unknown as SQLiteUserTable,
-);
+// @ts-expect-error - Suppressing the type mismatch errors
+const adapter = new DrizzleSQLiteAdapter(db, Session, User);
 
 export const lucia = new Lucia(adapter, {
   sessionCookie: {
@@ -37,8 +23,8 @@ export const lucia = new Lucia(adapter, {
 });
 
 export const github = new GitHub(
-  env().GITHUB_CLIENT_ID,
-  env().GITHUB_CLIENT_SECRET,
+  env.GITHUB_CLIENT_ID,
+  env.GITHUB_CLIENT_SECRET,
 );
 
 declare module "lucia" {

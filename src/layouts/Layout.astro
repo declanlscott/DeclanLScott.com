@@ -25,7 +25,7 @@ const {
   PUBLIC_EMAIL: email,
   PUBLIC_LINKEDIN: linkedin,
   PUBLIC_X_USERNAME: xUsername,
-} = env();
+} = env;
 ---
 
 <!doctype html>
@@ -41,7 +41,7 @@ const {
   </head>
 
   <body
-    class="body-gradient container mx-auto mt-8 bg-white px-6 dark:bg-neutral-900"
+    class="body-gradient mx-auto mt-8 max-w-3xl bg-white px-6 dark:bg-neutral-900"
   >
     <Prose>
       <div class="flex min-h-[calc(100vh-2rem)] flex-col">
@@ -57,25 +57,7 @@ const {
           <section id="contact" transition:name="contact">
             <h3>Contact me</h3>
 
-            <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
-              <ContactCard href={`mailto:${email}`} title={email}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  slot="icon"
-                >
-                  <circle cx="12" cy="12" r="4"></circle><path
-                    d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"></path>
-                </svg>
-              </ContactCard>
-
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
               <ContactCard href={linkedin} title={name}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -117,6 +99,26 @@ const {
                   ></path>
                 </svg>
               </ContactCard>
+
+              <div class="col-span-full">
+                <ContactCard href={`mailto:${email}`} title={email}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    slot="icon"
+                  >
+                    <circle cx="12" cy="12" r="4"></circle><path
+                      d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"></path>
+                  </svg>
+                </ContactCard>
+              </div>
             </div>
           </section>
         </main>
@@ -279,7 +281,5 @@ const {
         }
       }
     </style>
-
-    src/lib/env
   </body>
 </html>

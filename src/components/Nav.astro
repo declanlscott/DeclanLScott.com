@@ -40,8 +40,10 @@ const { items } = Astro.props;
         (((value - inputLower) / INPUT_RANGE) * OUTPUT_RANGE || 0);
     };
 
-    const listElement = document.querySelector("ul");
-    const itemElements = document.querySelectorAll("li");
+    const listElement: HTMLUListElement | null =
+      document.querySelector("nav#top-nav ul");
+    const itemElements: NodeListOf<HTMLLIElement> =
+      document.querySelectorAll("nav#top-nav ul li");
 
     const updateMagnet = (event: PointerEvent) => {
       const item = event.currentTarget as NavItemElement;
@@ -114,7 +116,7 @@ const { items } = Astro.props;
   document.addEventListener("astro:page-load", setupMagnet);
 </script>
 
-<nav>
+<nav id="top-nav">
   <ul class="not-prose m-0 flex w-fit list-none flex-wrap p-0">
     {
       items.map(({ name, href }) => (
@@ -131,7 +133,7 @@ const { items } = Astro.props;
   </ul>
 </nav>
 
-<style>
+<style scoped>
   @layer magnet {
     :root {
       --elastic-out: linear(
