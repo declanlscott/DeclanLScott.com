@@ -6,7 +6,7 @@ import { github, lucia } from "~/lib/auth";
 
 import type { APIContext } from "astro";
 
-// export const prerender = false;
+export const prerender = false;
 
 export async function GET(context: APIContext): Promise<Response> {
   const code = context.url.searchParams.get("code");
@@ -20,13 +20,11 @@ export async function GET(context: APIContext): Promise<Response> {
 
   try {
     const tokens = await github.validateAuthorizationCode(code);
-
     const githubUserResponse = await fetch("https://api.github.com/user", {
       headers: {
         Authorization: `Bearer ${tokens.accessToken}`,
       },
     });
-
     const githubUser: GitHubUser = await githubUserResponse.json();
 
     const existingUser = (
@@ -41,7 +39,7 @@ export async function GET(context: APIContext): Promise<Response> {
         sessionCookie.value,
         sessionCookie.attributes,
       );
-      return context.redirect("/");
+      return context.redirect("/guestbook");
     }
 
     const userId = generateId(15);
@@ -50,6 +48,7 @@ export async function GET(context: APIContext): Promise<Response> {
       id: userId,
       githubId: githubUser.id,
       username: githubUser.login,
+      name: githubUser.name,
     });
 
     const session = await lucia.createSession(userId, {});
@@ -59,9 +58,8 @@ export async function GET(context: APIContext): Promise<Response> {
       sessionCookie.value,
       sessionCookie.attributes,
     );
-    return context.redirect("/");
+    return context.redirect("/guestbook");
   } catch (e) {
-    console.error(e);
     // the specific error message depends on the provider
     if (e instanceof OAuth2RequestError) {
       // invalid code
@@ -78,4 +76,5 @@ export async function GET(context: APIContext): Promise<Response> {
 interface GitHubUser {
   id: number;
   login: string;
+  name: string;
 }

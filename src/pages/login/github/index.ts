@@ -4,7 +4,7 @@ import { github } from "~/lib/auth";
 
 import type { APIContext } from "astro";
 
-// export const prerender = false;
+export const prerender = false;
 
 export async function GET(context: APIContext): Promise<Response> {
   const state = generateState();
