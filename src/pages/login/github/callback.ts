@@ -23,6 +23,7 @@ export async function GET(context: APIContext): Promise<Response> {
     const githubUserResponse = await fetch("https://api.github.com/user", {
       headers: {
         Authorization: `Bearer ${tokens.accessToken}`,
+        "User-Agent": "cloudflare-worker",
       },
     });
     const githubUser: GitHubUser = await githubUserResponse.json();
@@ -60,6 +61,7 @@ export async function GET(context: APIContext): Promise<Response> {
     );
     return context.redirect("/guestbook");
   } catch (e) {
+    console.error("error", e);
     // the specific error message depends on the provider
     if (e instanceof OAuth2RequestError) {
       // invalid code
