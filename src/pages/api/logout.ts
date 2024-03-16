@@ -1,4 +1,4 @@
-import { lucia } from "../../lib/auth";
+import { lucia } from "~/lib/auth";
 
 import type { APIContext } from "astro";
 
@@ -16,5 +16,5 @@ export async function POST(context: APIContext): Promise<Response> {
     );
   }
 
-  return context.redirect("/guestbook");
+  return new Response(null, { status: 204 });
 }

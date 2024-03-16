@@ -9,7 +9,7 @@ import { FontaineTransform } from "fontaine";
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid",
-  adapter: cloudflare(),
+  adapter: cloudflare({ imageService: "compile" }),
   site: "https://www.declanlscott.com",
   integrations: [
     db(),
