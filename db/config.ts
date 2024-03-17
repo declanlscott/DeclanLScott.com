@@ -1,4 +1,4 @@
-import { column, defineDb, defineTable } from "astro:db";
+import { column, defineDb, defineTable, NOW } from "astro:db";
 
 const User = defineTable({
   columns: {
@@ -13,7 +13,7 @@ const Session = defineTable({
   columns: {
     id: column.text({ primaryKey: true }),
     userId: column.text({ references: () => User.columns.id }),
-    expiresAt: column.number(),
+    expiresAt: column.date(),
   },
 });
 
@@ -22,7 +22,7 @@ const Guestbook = defineTable({
     id: column.text({ primaryKey: true }),
     authorId: column.text({ references: () => User.columns.id }),
     message: column.text(),
-    createdAt: column.date(),
+    createdAt: column.date({ default: NOW }),
   },
 });
 

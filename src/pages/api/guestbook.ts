@@ -49,7 +49,6 @@ export async function POST(context: APIContext): Promise<Response> {
             id: generateId(15),
             authorId: context.locals.session.userId,
             message: result.data.message,
-            createdAt: new Date(),
           })
           .returning()
       ).pop();
