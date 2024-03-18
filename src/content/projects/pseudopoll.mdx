@@ -7,8 +7,12 @@ image: ./pseudopoll.png
 order: 0
 ---
 
+import { YouTube } from "@astro-community/astro-embed-youtube";
+
 **PseudoPoll** is a simple polling app with a focus on real-time updates and scalability. I built it to learn more about several technologies both on the frontend and backend of the stack. In hindsight it was probably too much to learn all at once, but I still had a lot of fun building it.
 
 On the backend, I learned about **Amazon Web Services** like API Gateway v1 (REST), Lambda, DynamoDB, SQS, IoT Core, EventBridge, among others. Following Lambda best practices, I built many single purpose functions to handle different parts of the application, written in **Go**. Persistent data is stored in DynamoDB with a single table design. What I think makes my project unique is the implementation of real-time updates. It is an event-driven system using MQTT communication over WebSockets with the frontend using IoT Core. For a more detailed visual overview, check out my [architecture diagram](https://github.com/declanlscott/pseudopoll/blob/main/architecture.png) in the repo. Along with the frontend, all of this infrastructure is defined with **Terraform**.
+
+<YouTube id="coXVLwZcTXY" />
 
 I built the frontend with **Nuxt** and **Vue**, which was also new to me coming from React. It really opened my eyes to the world of Vue and I'm excited to use it more in the future. The Nuxt ecosystem is really impressive and I was able to take advantage of [many](https://nuxt.com/modules/ui) [great](https://nuxt.com/modules/authjs) [modules](https://nuxt.com/modules/vue-query) to build the app. The "back of the frontend" handles authentication with Google OAuth and acts as sort of a proxy to the "real" backend using the Backend For Frontend (BFF) pattern, all hosted on **Cloudflare** Pages. To minimize racking up my AWS bill, I have disabled user authentication at the moment.

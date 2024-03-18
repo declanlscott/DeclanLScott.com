@@ -1,5 +1,6 @@
 import cloudflare from "@astrojs/cloudflare";
 import db from "@astrojs/db";
+import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
@@ -14,10 +15,9 @@ export default defineConfig({
   integrations: [
     db(),
     sitemap(),
-    tailwind({
-      applyBaseStyles: false,
-    }),
+    tailwind({ applyBaseStyles: false }),
     svelte(),
+    mdx(),
   ],
   vite: {
     plugins: [
