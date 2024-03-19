@@ -1,0 +1,13 @@
+---
+type Props = {
+  text: string;
+  minutes: string;
+  className?: string;
+};
+
+const { text, minutes, className } = Astro.props;
+---
+
+<time datetime={`PT${minutes}M`} class:list={[className]}>
+  {text}
+</time>

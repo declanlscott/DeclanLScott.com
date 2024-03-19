@@ -41,6 +41,12 @@ dependencies:
   lucia-adapter-astrodb:
     specifier: ^0.0.3
     version: 0.0.3(@astrojs/db@0.8.6)(lucia@3.1.1)
+  mdast-util-to-string:
+    specifier: ^4.0.0
+    version: 4.0.0
+  reading-time:
+    specifier: ^1.5.0
+    version: 1.5.0
   svelte:
     specifier: ^4.2.12
     version: 4.2.12
@@ -5018,6 +5024,10 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.1
+
+  /reading-time@1.5.0:
+    resolution: {integrity: sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg==}
+    dev: false
 
   /regexp-tree@0.1.27:
     resolution: {integrity: sha512-iETxpjK6YoRWJG5o6hXLwvjYAoW+FEZn9os0PD/b6AP6xQwsa/Y7lCVgIixBbUPMfhu+i2LtdeAqVTgGlQarfA==}

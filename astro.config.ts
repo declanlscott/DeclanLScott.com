@@ -7,6 +7,8 @@ import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import { FontaineTransform } from "fontaine";
 
+import { remarkReadingTime } from "./remark-reading-time.mjs";
+
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid",
@@ -19,6 +21,7 @@ export default defineConfig({
     svelte(),
     mdx(),
   ],
+  markdown: { remarkPlugins: [remarkReadingTime] },
   vite: {
     plugins: [
       FontaineTransform.vite({
