@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  tags: CollectionEntry<"blog">["data"]["tags"];
+  className?: string;
+};
+
+const { tags, className } = Astro.props;
+---
+
+{
+  tags.map((tag, index) =>
+    // prettier-ignore
+    <>
+      <a href={`/blog/tags/${tag}`} class:list={[className]}>{`#${tag}`}</a>{index < tags.length - 1 && ", "}
+    </>,
+  )
+}

@@ -1,6 +1,8 @@
 ---
 import { Picture } from "astro:assets";
 
+import BaseCard from "~/components/BaseCard.astro";
+
 import type { CollectionEntry } from "astro:content";
 
 type Props = {
@@ -10,9 +12,7 @@ type Props = {
 const { project } = Astro.props;
 ---
 
-<div
-  class="group relative gap-4 rounded-lg border border-neutral-200 bg-neutral-50/50 p-6 transition-colors hover:bg-neutral-100 dark:border-neutral-600 dark:bg-neutral-800/60 hover:dark:bg-neutral-800"
->
+<BaseCard>
   <div class="flex items-center justify-between gap-4">
     <h2 class="m-0">
       <a
@@ -85,4 +85,4 @@ const { project } = Astro.props;
       class="rounded-lg"
     />
   </a>
-</div>
+</BaseCard>

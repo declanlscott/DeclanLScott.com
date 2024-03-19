@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "~/layouts/Layout.astro";
+
+const blog = await getCollection("blog");
+
+const tags = blog.reduce(
+  (tags, post) => {
+    post.data.tags.forEach((tag) => {
+      const t = tags.find(({ name }) => name === tag);
+
+      if (!t) {
+        tags.push({ name: tag, numOfPosts: 1 });
+        return;
+      }
+
+      t.numOfPosts++;
+    });
+
+    return tags;
+  },
+  [] as Array<{ name: string; numOfPosts: number }>,
+);
+---
+
+<Layout>
+  <h1>All Tags</h1>
+
+  <ul>
+    {
+      tags.map((tag) => (
+        <li>
+          <a href={`/blog/tags/${tag.name}`}>
+            #{tag.name} ({tag.numOfPosts})
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

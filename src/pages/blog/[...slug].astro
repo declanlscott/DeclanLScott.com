@@ -1,0 +1,58 @@
+---
+import { Picture } from "astro:assets";
+import { getCollection } from "astro:content";
+
+import FormattedDate from "~/components/FormattedDate.astro";
+import FormattedTags from "~/components/FormattedTags.astro";
+import Layout from "~/layouts/Layout.astro";
+
+import type { GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
+
+export const getStaticPaths = (async () => {
+  const blog = await getCollection("blog");
+
+  return blog.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = { post: CollectionEntry<"blog"> };
+
+const { post } = Astro.props;
+
+const { Content } = await post.render();
+---
+
+<Layout title={`${post.data.title} | Blog`}>
+  <article>
+    <header>
+      <FormattedDate
+        date={post.data.date}
+        className="text-neutral-500 dark:text-neutral-400"
+      />
+
+      <h1>{post.data.title}</h1>
+
+      <FormattedTags tags={post.data.tags} />
+
+      <figure>
+        <Picture
+          src={post.data.image.src}
+          alt={post.data.title}
+          formats={["avif", "webp"]}
+          transition:name={`${post.slug}-img`}
+          class="rounded-lg"
+        />
+        {
+          post.data.image.caption && (
+            <figcaption>{post.data.image.caption}</figcaption>
+          )
+        }
+      </figure>
+    </header>
+
+    <Content />
+  </article>
+</Layout>

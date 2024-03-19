@@ -1,0 +1,58 @@
+---
+import { Picture } from "astro:assets";
+
+import BaseCard from "~/components/BaseCard.astro";
+import FormattedDate from "~/components/FormattedDate.astro";
+import FormattedTags from "~/components/FormattedTags.astro";
+
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  post: CollectionEntry<"blog">;
+};
+
+const { post } = Astro.props;
+---
+
+<BaseCard>
+  <div class="flex items-center gap-2">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="h-5 w-5"
+    >
+      <path d="M8 2v4"></path>
+      <path d="M16 2v4"></path>
+      <rect width="18" height="18" x="3" y="4" rx="2"> </rect>
+      <path d="M3 10h18"></path>
+    </svg>
+
+    <FormattedDate date={post.data.date} />
+  </div>
+
+  <Picture
+    src={post.data.image.src}
+    alt={post.data.title}
+    formats={["avif", "webp"]}
+    transition:name={`${post.slug}-img`}
+    class="rounded-lg"
+  />
+
+  <h2 class="mt-0">
+    <a
+      href=`/blog/${post.slug}`
+      class="after:absolute after:inset-0 group-hover:decoration-neutral-500 group-hover:decoration-[3px] group-hover:underline-offset-[3px] group-hover:dark:decoration-neutral-400"
+    >
+      {post.data.title}
+    </a>
+  </h2>
+
+  <FormattedTags tags={post.data.tags} className="z-10" />
+</BaseCard>
