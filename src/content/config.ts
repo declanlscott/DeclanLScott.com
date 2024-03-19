@@ -15,10 +15,17 @@ const projects = defineCollection({
 
 const blog = defineCollection({
   type: "content",
-  schema: z.object({
-    title: z.string(),
-    date: z.date(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      date: z.coerce.date(),
+      tags: z.array(z.string()),
+      image: z.object({
+        src: image(),
+        caption: z.string().optional(),
+      }),
+      isPublished: z.boolean(),
+    }),
 });
 
 export const collections = {
