@@ -1,6 +1,6 @@
 ---
 title: "User Authentication in Astro DB"
-date: "2024-03-18"
+date: "2024-03-18T00:00-05:00"
 tags: ["astro", "database", "lucia", "authentication"]
 image:
   {
