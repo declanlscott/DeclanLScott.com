@@ -81,5 +81,5 @@ export async function GET(context: APIContext): Promise<Response> {
 interface GitHubUser {
   id: number;
   login: string;
-  name: string;
+  name: string | null;
 }
