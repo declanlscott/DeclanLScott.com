@@ -122,7 +122,7 @@ const { items } = Astro.props;
       items.map(({ name, href }) => (
         <li class="not-prose grid place-items-center">
           <a
-            href={href}
+            {href}
             class="not-prose bg-transparent no-underline outline-offset-8"
           >
             <span class="inline-block">{name}</span>

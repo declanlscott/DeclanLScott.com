@@ -12,7 +12,7 @@ const { href, title } = Astro.props;
 <BaseCard className="flex items-center justify-center">
   <slot name="icon" />
 
-  <a href={href} class="after:absolute after:inset-0" target="_blank">
+  <a {href} class="after:absolute after:inset-0" target="_blank">
     {title}
   </a>
 </BaseCard>

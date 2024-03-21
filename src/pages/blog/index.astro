@@ -20,7 +20,7 @@ const posts = blog
     </h1>
 
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-      {posts.map((post) => <BlogPostCard post={post} />)}
+      {posts.map((post) => <BlogPostCard {post} />)}
     </div>
   </div>
 </Layout>

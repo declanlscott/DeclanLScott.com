@@ -26,7 +26,7 @@ const projects = await getCollection("projects");
       {
         projects
           .sort((a, b) => a.data.order - b.data.order)
-          .map((project) => <ProjectCard project={project} />)
+          .map((project) => <ProjectCard {project} />)
       }
     </div>
   </div>
