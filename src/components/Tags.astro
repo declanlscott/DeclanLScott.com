@@ -10,7 +10,7 @@ type Props = {
 const { tags, limit = Infinity, className } = Astro.props;
 ---
 
-<div class="flex flex-wrap gap-1.5">
+<div class="flex flex-wrap items-center gap-1.5">
   {
     tags
       .slice(0, limit)
@@ -19,5 +19,9 @@ const { tags, limit = Infinity, className } = Astro.props;
       ))
   }
 
-  {tags.length > limit && <span>+{tags.length - limit}</span>}
+  {
+    tags.length > limit && (
+      <span class="text-sm">+{tags.length - limit} more</span>
+    )
+  }
 </div>
