@@ -13,15 +13,27 @@ import type { CollectionEntry } from "astro:content";
 export const getStaticPaths = (async () => {
   const blog = await getCollection("blog");
 
-  return blog.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  return blog.map((post, i) => {
+    const prev = blog.slice(i + 1).find((p) => p.data.isPublished);
+    const next = blog
+      .slice(0, i)
+      .toReversed()
+      .find((p) => p.data.isPublished);
+
+    return {
+      params: { slug: post.slug },
+      props: { prev, post, next },
+    };
+  });
 }) satisfies GetStaticPaths;
 
-type Props = { post: CollectionEntry<"blog"> };
+type Props = {
+  prev?: CollectionEntry<"blog">;
+  post: CollectionEntry<"blog">;
+  next?: CollectionEntry<"blog">;
+};
 
-const { post } = Astro.props;
+const { prev, post, next } = Astro.props;
 
 const { Content, remarkPluginFrontmatter } = await post.render();
 ---
@@ -89,5 +101,63 @@ const { Content, remarkPluginFrontmatter } = await post.render();
     </header>
 
     <Content />
+
+    <footer class="my-8 flex flex-wrap justify-between gap-4">
+      <div>
+        {
+          prev && (
+            <a
+              href={`/blog/${prev.slug}`}
+              class="group inline-flex items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-5 w-5 rotate-180 transition-transform group-hover:-translate-x-1.5"
+              >
+                <path d="M18 8L22 12L18 16" />
+                <path d="M2 12H22" />
+              </svg>
+              {prev.data.title}
+            </a>
+          )
+        }
+      </div>
+
+      <div>
+        {
+          next && (
+            <a
+              href={`/blog/${next.slug}`}
+              class="group inline-flex items-center gap-2"
+            >
+              {next.data.title}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-5 w-5 transition-transform group-hover:translate-x-1.5"
+              >
+                <path d="M18 8L22 12L18 16" />
+                <path d="M2 12H22" />
+              </svg>
+            </a>
+          )
+        }
+      </div>
+    </footer>
   </article>
 </Layout>
