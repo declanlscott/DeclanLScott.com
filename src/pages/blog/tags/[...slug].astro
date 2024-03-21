@@ -35,7 +35,7 @@ const posts = blog
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<Layout>
+<Layout title=`Blog #${tag}`>
   <h1>{`#${tag}`}</h1>
 
   <a href="/blog/tags">All Tags</a>
