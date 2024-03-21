@@ -5,23 +5,25 @@ import Layout from "~/layouts/Layout.astro";
 
 const blog = await getCollection("blog");
 
-const tags = blog.reduce(
-  (tags, post) => {
-    post.data.tags.forEach((tag) => {
-      const t = tags.find(({ name }) => name === tag);
+const tags = blog
+  .filter((post) => post.data.isPublished)
+  .reduce(
+    (tags, post) => {
+      post.data.tags.forEach((tag) => {
+        const t = tags.find(({ name }) => name === tag);
 
-      if (!t) {
-        tags.push({ name: tag, numOfPosts: 1 });
-        return;
-      }
+        if (!t) {
+          tags.push({ name: tag, numOfPosts: 1 });
+          return;
+        }
 
-      t.numOfPosts++;
-    });
+        t.numOfPosts++;
+      });
 
-    return tags;
-  },
-  [] as Array<{ name: string; numOfPosts: number }>,
-);
+      return tags;
+    },
+    [] as Array<{ name: string; numOfPosts: number }>,
+  );
 ---
 
 <Layout title="Blog Tags">

@@ -9,15 +9,17 @@ import type { GetStaticPaths } from "astro";
 export const getStaticPaths = (async () => {
   const blog = await getCollection("blog");
 
-  const tags = blog.reduce((tags, post) => {
-    post.data.tags.forEach((tag) => {
-      if (!tags.includes(tag)) {
-        tags.push(tag);
-      }
-    });
+  const tags = blog
+    .filter((post) => post.data.isPublished)
+    .reduce((tags, post) => {
+      post.data.tags.forEach((tag) => {
+        if (!tags.includes(tag)) {
+          tags.push(tag);
+        }
+      });
 
-    return tags;
-  }, [] as string[]);
+      return tags;
+    }, [] as string[]);
 
   return tags.map((tag) => ({
     params: { slug: tag },
