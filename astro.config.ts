@@ -29,5 +29,8 @@ export default defineConfig({
         resolvePath: (path) => new URL(`./public${path}`, import.meta.url),
       }),
     ],
+    optimizeDeps: {
+      exclude: ["astro:db"],
+    },
   },
 });
