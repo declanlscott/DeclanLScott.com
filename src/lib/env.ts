@@ -1,6 +1,5 @@
-import { email, string, url } from "valibot";
-
-import { createEnv } from "./vendor/t3-env";
+import { createEnv } from "@t3-oss/env-core";
+import { z } from "astro/zod";
 
 export const env = createEnv({
   /**
@@ -10,17 +9,17 @@ export const env = createEnv({
   clientPrefix: "PUBLIC_",
 
   client: {
-    PUBLIC_NAME: string(),
-    PUBLIC_EMAIL: string([email()]),
-    PUBLIC_LINKEDIN: string([url()]),
-    PUBLIC_X_USERNAME: string(),
+    PUBLIC_NAME: z.string(),
+    PUBLIC_EMAIL: z.string().email(),
+    PUBLIC_LINKEDIN: z.string().url(),
+    PUBLIC_X_USERNAME: z.string(),
   },
 
   server: {
-    GITHUB_CLIENT_ID: string(),
-    GITHUB_CLIENT_SECRET: string(),
+    GITHUB_CLIENT_ID: z.string(),
+    GITHUB_CLIENT_SECRET: z.string(),
 
-    ASTRO_STUDIO_APP_TOKEN: string(),
+    ASTRO_STUDIO_APP_TOKEN: z.string(),
   },
 
   /**
