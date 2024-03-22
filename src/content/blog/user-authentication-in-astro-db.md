@@ -131,9 +131,9 @@ import { GitHub } from "arctic";
 export const github = new GitHub(GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET);
 ```
 
-### SSR
+### Astro Config
 
-For authentication to work properly, Astro's build output must be set to `server` or `hybrid` in your `astro.config.ts` file. If you want your website to be mostly static, use `hybrid` and don't forget to add `export const prerender = false;` to the upcoming middleware and API endpoints code snippets.
+There are two changes you need to make to your astro config file. First, you need to manually mark the `astro:db` as an external dependency. Second, for authentication to work properly, Astro's build output must be set to `server` or `hybrid`. If you want your website to be mostly static, use `hybrid` and don't forget to add `export const prerender = false;` to the upcoming middleware and API endpoints code snippets.
 
 ```typescript
 // astro.config.ts
@@ -141,6 +141,11 @@ For authentication to work properly, Astro's build output must be set to `server
 // https://astro.build/config
 export default defineConfig({
   output: "server", // or "hybrid"
+  vite: {
+    optimizeDeps: {
+      exclude: ["astro:db"]
+    }
+  }
   // ... rest of config
 });
 ```
