@@ -46,7 +46,8 @@ export default defineConfig({
 TanStack Router supports file-based routing as well code based routing. Code based routing is more flexible, but file-based routing is generally preferred due to convention and ease of use. To enable file-based route generation, there are two options: `@tanstack/router-vite-plugin` and `@tanstack/router-cli`. Anecdotally, I've found the vite plugin to be bit [less reliable](https://github.com/TanStack/router/issues/1312) at regenerating the config when creating or deleting files, so I'll use the CLI:
 
 ```zsh
-pnpm add @tanstack/react-router @tanstack/router-cli
+pnpm add @tanstack/react-router
+pnpm add -D @tanstack/router-cli
 ```
 
 A trick I discovered recently is that you can use regular expressions with `pnpm run` to run multiple scripts at once, negating the need for a separate package like [`npm-run-all`](https://www.npmjs.com/package/npm-run-all2) or [`concurrently`](https://www.npmjs.com/package/concurrently). That way, you can run the Astro dev server and the TanStack Router CLI in a single command:
