@@ -307,5 +307,18 @@ const isHomePage = Astro.url.pathname === "/";
         }
       }
     </style>
+
+    <script is:inline lang="js">
+      (function () {
+        window.counterscale = {
+          q: [["set", "siteId", "declanlscott.com"], ["trackPageview"]],
+        };
+      })();
+    </script>
+    <script
+      is:inline
+      id="counterscale-script"
+      src="https://counterscale.dscott1008.workers.dev/tracker.js"
+      defer></script>
   </body>
 </html>
