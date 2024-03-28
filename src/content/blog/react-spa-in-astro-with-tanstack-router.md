@@ -43,27 +43,24 @@ export default defineConfig({
 
 ### TanStack Router
 
-TanStack Router supports file-based routing as well code based routing. Code based routing is more flexible, but file-based routing is generally preferred due to convention and ease of use. To enable file-based route generation, there are two options: `@tanstack/router-vite-plugin` and `@tanstack/router-cli`. Anecdotally, I've found the vite plugin to be bit [less reliable](https://github.com/TanStack/router/issues/1312) at regenerating the config when creating or deleting files, so I'll use the CLI:
+TanStack Router supports file-based routing as well code based routing. Code based routing is more flexible, but file-based routing is generally preferred due to convention and ease of use. To enable file-based route generation, there are two options: `@tanstack/router-vite-plugin` and `@tanstack/router-cli`. Since Astro is built on Vite, we can use the Vite plugin:
 
 ```zsh
-pnpm add @tanstack/react-router
-pnpm add -D @tanstack/router-cli
+pnpm add @tanstack/react-router @tanstack/router-vite-plugin
 ```
 
-A trick I discovered recently is that you can use regular expressions with `pnpm run` to run multiple scripts at once, negating the need for a separate package like [`npm-run-all`](https://www.npmjs.com/package/npm-run-all2) or [`concurrently`](https://www.npmjs.com/package/concurrently). That way, you can run the Astro dev server and the TanStack Router CLI in a single command:
+```typescript
+// astro.config.mjs
+import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
+import { defineConfig } from "astro/config";
 
-```json
-// package.json
-{
-  // ...
-  "scripts": {
-    "dev": "pnpm run /^dev:/",
-    "dev:tsr": "tsr watch",
-    "dev:astro": "astro dev",
-    "build": "tsr generate && astro check && astro build"
-  }
-  // ...
-}
+// https://astro.build/config
+export default defineConfig({
+  // ... other config
+  vite: {
+    plugins: [TanStackRouterVite()],
+  },
+});
 ```
 
 Next, create a `tsr.config.json` file in the root of your project so that TanStack Router knows where to look for your routes. I'll be putting everything SPA related in the `src/dashboard` directory:
