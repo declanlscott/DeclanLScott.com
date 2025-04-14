@@ -5,7 +5,8 @@
     "dev": "astro dev",
     "test": "vitest run",
     "build": "astro build --remote",
-    "preview": "astro preview",
+    "preview": "wrangler pages dev ./dist",
+    "deploy": "wrangler pages deploy ./dist",
     "astro": "astro",
     "format:check": "prettier --check .",
     "format:write": "prettier --write ."
@@ -37,6 +38,7 @@
     "prettier-plugin-tailwindcss": "^0.6.11",
     "sharp": "^0.34.1",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.1.1"
+    "vitest": "^3.1.1",
+    "wrangler": "^4.10.0"
   }
 }
