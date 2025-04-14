@@ -10,6 +10,8 @@ image:
 isPublished: true
 ---
 
+## 2025 UPDATE: This blog post is out of date! Lucia Auth has been [deprecated](https://github.com/lucia-auth/lucia/discussions/1714) and Astro Studio has been [shut down](https://astro.build/blog/goodbye-astro-studio/).
+
 Last week, [Astro](https://astro.build/) [released](https://astro.build/blog/astro-db/) a new database platform called [Astro DB](https://astro.build/db/). It's a fully managed SQL database designed exclusively for Astro websites, powered by [Turso](https://turso.tech/). Turso maintains [libSQL](https://turso.tech/libsql), a fork of SQLite optimized for modern distributed internet workloads. Astro also includes [Drizzle ORM](https://orm.drizzle.team/) for type-safe queries to the database. Read their [blog post](https://astro.build/blog/astro-db-deep-dive/) for a full deep dive.
 
 Naturally, the first thing you'll want to do with your database is give your users authenticated access. Luckily, [Lucia Auth](https://lucia-auth.com/) gives us everything we need to do this. The rest of this blog post is a comprehensive guide to get started with user authentication in Astro DB.
