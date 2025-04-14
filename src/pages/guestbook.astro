@@ -1,19 +1,9 @@
 ---
-import { db, desc, Guestbook as Entry, eq, User } from "astro:db";
-
-import GuestbookForm from "~/components/Guestbook.svelte";
 import Layout from "~/layouts/Layout.astro";
 
 export const prerender = false;
 
-const { session } = Astro.locals;
-
-const entries = await db
-  .select({ name: User.name, message: Entry.message })
-  .from(Entry)
-  .innerJoin(User, eq(Entry.authorId, User.id))
-  .orderBy(desc(Entry.createdAt))
-  .limit(100);
+// TODO: Reimplement this page
 ---
 
 <Layout title="Guestbook">
@@ -24,6 +14,6 @@ const entries = await db
       > guestbook
     </h1>
 
-    <GuestbookForm client:load {entries} {session} />
+    Under reconstruction! Check back later.
   </main>
 </Layout>
