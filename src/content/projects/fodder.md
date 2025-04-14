@@ -4,7 +4,7 @@ url: https://fodder.declanlscott.com
 repo: https://github.com/declanlscott/fodder
 blurb: Find your flavor of the day
 image: ./fodder.png
-order: 1
+order: 0
 ---
 
 I built **Fodder** to solve a problem I found myself having when a certain midwestern restaurant discontinued their mobile app. I used the app primarily for one reason — to check their "flavor of the day". Of course, there is no official API for this information, so I had to develop my own solution. With this project, I learned that it sometimes takes three implementations to get to the correct one. Was it worth all the effort for an app with such a specific purpose? Undeniably the answer is no, but that doesn't mean I didn't have fun and learn a lot along the way.
