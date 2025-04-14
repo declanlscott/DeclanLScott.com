@@ -145,9 +145,9 @@ export default defineConfig({
   output: "server", // or "hybrid"
   vite: {
     optimizeDeps: {
-      exclude: ["astro:db"]
-    }
-  }
+      exclude: ["astro:db"],
+    },
+  },
   // ... rest of config
 });
 ```
