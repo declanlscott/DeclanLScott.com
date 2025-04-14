@@ -17,7 +17,7 @@ export const getStaticPaths = (async () => {
     const prev = blog.slice(i + 1).find((p) => p.data.isPublished);
     const next = blog
       .slice(0, i)
-      .toReversed()
+      .reverse()
       .find((p) => p.data.isPublished);
 
     return {
