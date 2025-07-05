@@ -18,8 +18,6 @@ export const env = createEnv({
   server: {
     GITHUB_CLIENT_ID: z.string(),
     GITHUB_CLIENT_SECRET: z.string(),
-
-    ASTRO_STUDIO_APP_TOKEN: z.string(),
   },
 
   /**
