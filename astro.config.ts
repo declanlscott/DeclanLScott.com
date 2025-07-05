@@ -5,6 +5,7 @@ import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import { FontaineTransform } from "fontaine";
+import rehypeExternalLinks from "rehype-external-links";
 
 import { remarkReadingTime } from "./remark-reading-time.mjs";
 
@@ -19,7 +20,10 @@ export default defineConfig({
     svelte(),
     mdx(),
   ],
-  markdown: { remarkPlugins: [remarkReadingTime] },
+  markdown: {
+    remarkPlugins: [remarkReadingTime],
+    rehypePlugins: [[rehypeExternalLinks, { target: "_blank" }]],
+  },
   vite: {
     plugins: [
       FontaineTransform.vite({

@@ -25,7 +25,7 @@ const { Content } = await project.render();
 
 <Layout title={`${project.data.name} | Projects`}>
   <h1>
-    <a href={project.data.url} class="flex items-center gap-4">
+    <a href={project.data.url} target="_blank" class="flex items-center gap-4">
       <span>{project.data.name}</span>
 
       <svg
